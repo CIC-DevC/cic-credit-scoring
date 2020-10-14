@@ -1,4 +1,4 @@
-package com.tableausoftware.documentation.api.rest.util;
+package com.cic.util;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -25,7 +25,6 @@ import javax.xml.validation.SchemaFactory;
 import org.apache.log4j.Logger;
 import org.xml.sax.SAXException;
 
-import com.google.common.io.Files;
 import com.sun.jersey.api.client.Client;
 import com.sun.jersey.api.client.ClientResponse;
 import com.sun.jersey.api.client.WebResource;
@@ -34,21 +33,22 @@ import com.sun.jersey.multipart.FormDataBodyPart;
 import com.sun.jersey.multipart.MultiPart;
 import com.sun.jersey.multipart.MultiPartMediaTypes;
 import com.sun.jersey.multipart.file.FileDataBodyPart;
-import com.tableausoftware.documentation.api.rest.bindings.CapabilityType;
-import com.tableausoftware.documentation.api.rest.bindings.FileUploadType;
-import com.tableausoftware.documentation.api.rest.bindings.GranteeCapabilitiesType;
-import com.tableausoftware.documentation.api.rest.bindings.GroupType;
-import com.tableausoftware.documentation.api.rest.bindings.ObjectFactory;
-import com.tableausoftware.documentation.api.rest.bindings.PermissionsType;
-import com.tableausoftware.documentation.api.rest.bindings.ProjectListType;
-import com.tableausoftware.documentation.api.rest.bindings.ProjectType;
-import com.tableausoftware.documentation.api.rest.bindings.SiteListType;
-import com.tableausoftware.documentation.api.rest.bindings.SiteType;
-import com.tableausoftware.documentation.api.rest.bindings.TableauCredentialsType;
-import com.tableausoftware.documentation.api.rest.bindings.TsRequest;
-import com.tableausoftware.documentation.api.rest.bindings.TsResponse;
-import com.tableausoftware.documentation.api.rest.bindings.WorkbookListType;
-import com.tableausoftware.documentation.api.rest.bindings.WorkbookType;
+import com.cic.bindings.CapabilityType;
+import com.cic.bindings.FileUploadType;
+import com.cic.bindings.GranteeCapabilitiesType;
+import com.cic.bindings.GroupType;
+import com.cic.bindings.ObjectFactory;
+import com.cic.bindings.PermissionsType;
+import com.cic.bindings.ProjectListType;
+import com.cic.bindings.ProjectType;
+import com.cic.bindings.SiteListType;
+import com.cic.bindings.SiteType;
+import com.cic.bindings.TableauCredentialsType;
+import com.cic.bindings.TsRequest;
+import com.cic.bindings.TsResponse;
+import com.cic.bindings.WorkbookListType;
+import com.cic.bindings.WorkbookType;
+import com.google.common.io.Files;
 
 /**
  * This class encapsulates the logic used to make requests to the Tableau Server

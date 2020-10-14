@@ -6,4 +6,4 @@
 //
 
 @javax.xml.bind.annotation.XmlSchema(namespace = "http://tableau.com/api", elementFormDefault = javax.xml.bind.annotation.XmlNsForm.QUALIFIED)
-package com.tableausoftware.documentation.api.rest.bindings;
+package com.cic.bindings;

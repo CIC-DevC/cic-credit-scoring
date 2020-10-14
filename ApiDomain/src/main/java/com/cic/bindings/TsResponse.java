@@ -6,7 +6,7 @@
 //
 
 
-package com.tableausoftware.documentation.api.rest.bindings;
+package com.cic.bindings;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;

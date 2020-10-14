@@ -5,7 +5,7 @@
 // Generated on: 2015.09.21 at 01:55:40 PM PDT
 //
 
-package com.tableausoftware.documentation.api.rest.bindings;
+package com.cic.bindings;
 
 import javax.xml.bind.annotation.XmlEnum;
 import javax.xml.bind.annotation.XmlEnumValue;

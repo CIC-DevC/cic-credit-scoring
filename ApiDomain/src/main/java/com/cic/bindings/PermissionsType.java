@@ -6,7 +6,7 @@
 //
 
 
-package com.tableausoftware.documentation.api.rest.bindings;
+package com.cic.bindings;
 
 import java.util.ArrayList;
 import java.util.List;

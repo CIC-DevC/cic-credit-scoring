@@ -5,7 +5,7 @@
 // Generated on: 2015.01.30 at 12:49:43 PM PST
 //
 
-package com.tableausoftware.documentation.api.rest.bindings;
+package com.cic.bindings;
 
 import java.math.BigInteger;
 

@@ -1,4 +1,4 @@
-package com.tableausoftware.documentation.api.rest;
+package com.cic;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -12,13 +12,13 @@ import java.util.Properties;
 import org.apache.log4j.BasicConfigurator;
 import org.apache.log4j.Logger;
 
-import com.tableausoftware.documentation.api.rest.bindings.GranteeCapabilitiesType;
-import com.tableausoftware.documentation.api.rest.bindings.GroupType;
-import com.tableausoftware.documentation.api.rest.bindings.ProjectListType;
-import com.tableausoftware.documentation.api.rest.bindings.ProjectType;
-import com.tableausoftware.documentation.api.rest.bindings.TableauCredentialsType;
-import com.tableausoftware.documentation.api.rest.bindings.WorkbookType;
-import com.tableausoftware.documentation.api.rest.util.RestApiUtils;
+import com.cic.bindings.GranteeCapabilitiesType;
+import com.cic.bindings.GroupType;
+import com.cic.bindings.ProjectListType;
+import com.cic.bindings.ProjectType;
+import com.cic.bindings.TableauCredentialsType;
+import com.cic.bindings.WorkbookType;
+import com.cic.util.RestApiUtils;
 
 /**
  * This class demonstrates how to make Tableau REST API calls. It first gets
