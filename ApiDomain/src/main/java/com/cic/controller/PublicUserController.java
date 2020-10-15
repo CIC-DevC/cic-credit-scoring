@@ -25,6 +25,7 @@ final class PublicUsersController {
 	
 	@NonNull
 	UserAuthenticationService authentication;
+	
 	@NonNull
 	UserService users;
 
