@@ -10,18 +10,20 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.cic.constants.Constants;
 import com.cic.util.ConvertDataType;
 
 import org.apache.commons.lang.StringUtils;
 
 public class CsvParser {
-	private static String url = Constants.JDBC_URL;
-	private static String user = Constants.URL_USERNAME;
-	private static String password = Constants.URL_PASSWORD;
+
+	public final static String SQL_INSERT_STATEMENT = "INSERT INTO {0} ({1}) VALUES ({2})";
+	private static String url = "jdbc:mysql://localhost:3306/cic_devc";
+	private static String user = "root";
+	private static String password = "123456";
+	private static String driver = "com.mysql.cj.jdbc.Driver";
 
 	public static void main(String[] args) throws SQLException {
-		Connection conn = connect(Constants.JDBC_DRIVER);
+		Connection conn = connect(driver);
 		Statement stmt = null;
 		ResultSet rs = null;
 		try {
@@ -106,7 +108,7 @@ public class CsvParser {
 	}
 
 	private static String getInsertStatement(String tableName, String columnNames, String records) {
-		String sql = Constants.SQL_INSERT_STATEMENT;
+		String sql = SQL_INSERT_STATEMENT;
 		sql = StringUtils.replace(sql, "{0}", tableName);
 		sql = StringUtils.replace(sql, "{1}", columnNames);
 		sql = StringUtils.replace(sql, "{2}", records);
