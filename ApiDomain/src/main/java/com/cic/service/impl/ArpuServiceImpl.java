@@ -3,8 +3,7 @@ package com.cic.service.impl;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import com.cic.domain.Arpu;
 import com.cic.dto.ArpuDTO;
@@ -12,14 +11,16 @@ import com.cic.mapper.ArpuMapper;
 import com.cic.repository.ArpuRepository;
 import com.cic.service.ArpuService;
 
-@Component
+@Service
 public class ArpuServiceImpl implements ArpuService{
 
-	@Autowired
 	ArpuRepository arpuRepository;
-	
-	@Autowired
 	ArpuMapper arpuMapper;
+	
+	ArpuServiceImpl(ArpuRepository arpuRepository, ArpuMapper arpuMapper){
+		this.arpuRepository = arpuRepository;
+		this.arpuMapper = arpuMapper;
+	}
 	
 	@Override
 	public List<ArpuDTO> findAll() {

@@ -25,6 +25,12 @@
   </properties>
 
 	<dependencies>
+	<!-- https://mvnrepository.com/artifact/org.apache.ddlutils/ddlutils -->
+	<dependency>
+		<groupId>org.apache.ddlutils</groupId>
+		<artifactId>ddlutils</artifactId>
+		<version>1.0</version>
+	</dependency>
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-web</artifactId>
@@ -36,10 +42,11 @@
 		<scope>compile</scope>
 	</dependency>
     
-    <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter-security</artifactId>
-    </dependency>
+     <dependency>
+	    <groupId>org.apache.tomcat.embed</groupId>
+	    <artifactId>tomcat-embed-jasper</artifactId>
+	    <scope>provided</scope>
+	</dependency>
     <dependency>
       <groupId>org.projectlombok</groupId>
       <artifactId>lombok</artifactId>
