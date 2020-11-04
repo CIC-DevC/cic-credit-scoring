@@ -66,6 +66,9 @@ public class Arpu implements Serializable{
 	
 	@Column(name = "COL_27d")
 	private String COL27d;
+	
+	@Column(name = "label")
+	private Integer label;
 
 	public Long getId() {
 		return id;
@@ -205,6 +208,14 @@ public class Arpu implements Serializable{
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
+	}
+
+	public Integer getLabel() {
+		return label;
+	}
+
+	public void setLabel(Integer label) {
+		this.label = label;
 	}
 
 	

@@ -21,4 +21,6 @@ public interface ServiceUseRepository extends  JpaRepository<ServiceUse, Long>{
 			+ " INNER JOIN Arpu b ON a.msisdn = b.msisdn"
 			+ " WHERE b.phoneNum = :phoneNum AND a.serviceId IS NOT NULL")
 	List<ServiceUse> findByPhoneNum(@Param("phoneNum") String phoneNum);
+	
+	
 }

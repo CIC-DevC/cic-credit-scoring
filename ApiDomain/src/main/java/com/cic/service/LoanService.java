@@ -10,4 +10,10 @@ public interface LoanService {
 	
 	List<Loan> findByPhoneNum(String phoneNum);
 	
+	Integer countLoanTypeOneOfMsisdn(String phoneNum);
+	
+	Integer countLoanTypeZeroOfMsisdn(String phoneNum);
+	
+	Integer sumOfLoanOfMsisdn(String phoneNum);
+	
 }

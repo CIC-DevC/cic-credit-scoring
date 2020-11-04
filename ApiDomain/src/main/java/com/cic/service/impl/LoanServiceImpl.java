@@ -5,11 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.cic.domain.Arpu;
 import com.cic.domain.Loan;
-import com.cic.repository.ArpuRepository;
 import com.cic.repository.LoanRepository;
-import com.cic.service.ArpuService;
 import com.cic.service.LoanService;
 
 
@@ -31,6 +28,21 @@ public class LoanServiceImpl implements LoanService{
 	@Override
 	public List<Loan> findByPhoneNum(String phoneNum) {
 		return loanRepository.findByPhoneNum(phoneNum);
+	}
+
+	@Override
+	public Integer countLoanTypeOneOfMsisdn(String phoneNum) {
+		return loanRepository.countLoanTypeOneOfMsisdn(phoneNum);
+	}
+
+	@Override
+	public Integer countLoanTypeZeroOfMsisdn(String phoneNum) {
+		return loanRepository.countLoanTypeZeroOfMsisdn(phoneNum);
+	}
+
+	@Override
+	public Integer sumOfLoanOfMsisdn(String phoneNum) {
+		return loanRepository.sumOfLoanOfMsisdn(phoneNum);
 	}
 
 }

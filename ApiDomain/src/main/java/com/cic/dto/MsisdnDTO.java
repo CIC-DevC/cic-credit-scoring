@@ -1,12 +1,19 @@
 package com.cic.dto;
 
-public class ArpuDTO {
+import java.io.Serializable;
+import java.util.List;
 
-    private Long id;
+import com.cic.domain.Loan;
+import com.cic.domain.Recharge;
+import com.cic.domain.ServiceUse;
+
+public class MsisdnDTO implements Serializable{
 	
-	private String phoneNum;
+	private static final long serialVersionUID = 5890899298648620024L;
 
 	private String msisdn;
+
+	private String phoneNum;
 	
 	private String cityId;
 	
@@ -35,13 +42,21 @@ public class ArpuDTO {
 	private String COL27c;
 	
 	private String COL27d;
+	
+	private Integer label;
+	
+	private List<Loan> lstLoan;
+	
+	private List<Recharge> lstRecharge;
+	
+	private List<ServiceUse> lstServiceUse;
 
-	public Long getId() {
-		return id;
+	public String getMsisdn() {
+		return msisdn;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
+	public void setMsisdn(String msisdn) {
+		this.msisdn = msisdn;
 	}
 
 	public String getPhoneNum() {
@@ -50,14 +65,6 @@ public class ArpuDTO {
 
 	public void setPhoneNum(String phoneNum) {
 		this.phoneNum = phoneNum;
-	}
-
-	public String getMsisdn() {
-		return msisdn;
-	}
-
-	public void setMsisdn(String msisdn) {
-		this.msisdn = msisdn;
 	}
 
 	public String getCityId() {
@@ -170,5 +177,41 @@ public class ArpuDTO {
 
 	public void setCOL27d(String cOL27d) {
 		COL27d = cOL27d;
+	}
+
+	public List<Loan> getLstLoan() {
+		return lstLoan;
+	}
+
+	public void setLstLoan(List<Loan> lstLoan) {
+		this.lstLoan = lstLoan;
+	}
+
+	public List<Recharge> getLstRecharge() {
+		return lstRecharge;
+	}
+
+	public void setLstRecharge(List<Recharge> lstRecharge) {
+		this.lstRecharge = lstRecharge;
+	}
+
+	public List<ServiceUse> getLstServiceUse() {
+		return lstServiceUse;
+	}
+
+	public void setLstServiceUse(List<ServiceUse> lstServiceUse) {
+		this.lstServiceUse = lstServiceUse;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
+	public Integer getLabel() {
+		return label;
+	}
+
+	public void setLabel(Integer label) {
+		this.label = label;
 	}
 }
