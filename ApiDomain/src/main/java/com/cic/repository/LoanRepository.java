@@ -9,14 +9,16 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-import com.cic.domain.Arpu;
+import com.cic.domain.Loan;
 
 @Repository
 @Transactional
-public interface ArpuRepository extends  JpaRepository<Arpu, Long>{
+public interface LoanRepository extends  JpaRepository<Loan, Long>{
 	
-	List<Arpu> findAll();
+	List<Loan> findAll();
 	
-	@Query("SELECT a FROM Arpu a WHERE a.phoneNum = :phoneNum")
-	Arpu findByPhoneNum(@Param("phoneNum") String phoneNum);
+	@Query("SELECT a FROM Loan a "
+			+ " INNER JOIN Arpu b ON a.msisdn = b.msisdn"
+			+ " WHERE b.phoneNum = :phoneNum AND a.amount IS NOT NULL")
+	List<Loan> findByPhoneNum(@Param("phoneNum") String phoneNum);
 }

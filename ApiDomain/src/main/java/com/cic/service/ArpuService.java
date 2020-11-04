@@ -2,19 +2,12 @@ package com.cic.service;
 
 import java.util.List;
 
-import org.springframework.stereotype.Service;
+import com.cic.domain.Arpu;
 
-import com.cic.dto.ArpuDTO;
-
-@Service
 public interface ArpuService {
 	
-	List<ArpuDTO> findAll();
+	List<Arpu> findAll();
 	
-	ArpuDTO save(ArpuDTO arpuDto);
+	Arpu findByPhoneNum(String phoneNum);
 	
-	ArpuDTO findOne(Long id);
-	
-	ArpuDTO delete(ArpuDTO arpuDto);
-
 }
