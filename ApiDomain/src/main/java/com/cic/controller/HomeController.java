@@ -21,7 +21,7 @@ public class HomeController {
 	}
 
 	
-	@GetMapping(value= {"/search/{phoneNum}"})
+	@GetMapping(value= {"api/search/{phoneNum}"})
 	public ResponseEntity<MsisdnDTO> getAllArpu(@PathVariable("phoneNum") String phoneNum) {
 		MsisdnDTO msisdnDTO = homeService.findInfoOfMsisdnByPhoneNum(phoneNum);
         return new ResponseEntity<MsisdnDTO>(msisdnDTO, HttpStatus.OK);
