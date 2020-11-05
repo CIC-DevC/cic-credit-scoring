@@ -27,71 +27,71 @@ public class CsvParser {
 		Statement stmt = null;
 		ResultSet rs = null;
 		try {
-			stmt = conn.createStatement();
-			List<String[]> submission = readCSV("dataset/submission.csv");
-			String columnSubmision = "msisdn, score";
-			stmt.executeUpdate("TRUNCATE TABLE submission");
-			for(String[] record: submission) {
-				String sql = getInsertStatement("submission", columnSubmision, getSubmissionValue(record));
-				stmt.executeUpdate(sql);
-			}
+//			stmt = conn.createStatement();
+//			List<String[]> submission = readCSV("dataset/submission.csv");
+//			String columnSubmision = "msisdn, score";
+//			stmt.executeUpdate("TRUNCATE TABLE submission");
+//			for(String[] record: submission) {
+//				String sql = getInsertStatement("submission", columnSubmision, getSubmissionValue(record));
+//				stmt.executeUpdate(sql);
+//			}
 			
-			List<String[]> arpu = readCSV("dataset/arpu_train.csv");
-			String columnArpuNames = "msisdn, city_id, area_id, birthyear, sex, COL_17, COL_18, COL_19, COL_20, COL_21, COL_22, COL_27a, COL_27b, COL_27c, COL_27d, label, phone_num";
-			stmt.executeUpdate("TRUNCATE TABLE arpu");
-			Long phoneNum = Long.parseLong("8490000000");
-			for(String[] record: arpu) {
-				String phoneNumm = ",\"" + phoneNum + "\"";
-				String sql = getInsertStatement("arpu", columnArpuNames, getArpuValue(record, 1, phoneNumm));
-				
-				stmt.executeUpdate(sql);
-				phoneNum++;
-			}
-			arpu = readCSV("dataset/arpu_test.csv");
-			phoneNum = Long.parseLong("8491000000");
-			for(String[] record: arpu) {
-				String phoneNumm = ",\"" + phoneNum + "\"";
-				String sql = getInsertStatement("arpu", columnArpuNames, getArpuValue(record, 0, phoneNumm));
-				stmt.executeUpdate(sql);
-				phoneNum++;
-			}
+//			List<String[]> arpu = readCSV("dataset/arpu_train.csv");
+//			String columnArpuNames = "msisdn, city_id, area_id, birthyear, sex, COL_17, COL_18, COL_19, COL_20, COL_21, COL_22, COL_27a, COL_27b, COL_27c, COL_27d, label, phone_num";
+//			stmt.executeUpdate("TRUNCATE TABLE arpu");
+//			Long phoneNum = Long.parseLong("8490000000");
+//			for(String[] record: arpu) {
+//				String phoneNumm = ",\"" + phoneNum + "\"";
+//				String sql = getInsertStatement("arpu", columnArpuNames, getArpuValue(record, 1, phoneNumm));
+//				
+//				stmt.executeUpdate(sql);
+//				phoneNum++;
+//			}
+//			arpu = readCSV("dataset/arpu_test.csv");
+//			phoneNum = Long.parseLong("8491000000");
+//			for(String[] record: arpu) {
+//				String phoneNumm = ",\"" + phoneNum + "\"";
+//				String sql = getInsertStatement("arpu", columnArpuNames, getArpuValue(record, 0, phoneNumm));
+//				stmt.executeUpdate(sql);
+//				phoneNum++;
+//			}
 			
-			List<String[]> loan = readCSV("dataset/loan.csv");
-			String columnLoanNames = "msisdn, loan_type, amount, created_date, modified_date";
-			stmt.executeUpdate("TRUNCATE TABLE loan");
-			for(String[] record: loan) {
-				String sql = getInsertStatement("loan", columnLoanNames, getLoanValue(record));
-				stmt.executeUpdate(sql);
-			}
-			
-			List<String[]> recharge = readCSV("dataset/recharge_update.csv");
-			String columnRechargeNames = "msisdn, created_date, c_or_v, fee_charge";
-			stmt.executeUpdate("TRUNCATE TABLE recharge");
-			for(String[] record: recharge) {
-				String sql = getInsertStatement("recharge", columnRechargeNames, getRechargeValue(record));
-				stmt.executeUpdate(sql);
-			}
-			
-			String columnTempNames = "msisdn, service_id, second_per_call, used_data, partner_msisdn, created_date, upload_data, service_type";
-			
-			BufferedReader br = null;
-			String line = "";
-			String csvSplitBy = ",";
-			stmt.executeUpdate("TRUNCATE TABLE service_use");
-			try {
-				br = new BufferedReader(new FileReader("dataset/temp.csv"));
-				line = br.readLine().trim();
-				line = br.readLine();
-				while (line != null && !line.isEmpty()) {
-					String[] record = line.split(csvSplitBy); 
-					String sql = getInsertStatement("service_use", columnTempNames, getTempValue(record));
-					stmt.executeUpdate(sql);
-					line = br.readLine();
-				}
-				br.close();
-			} catch (Exception e) {
-				System.out.println(e.toString());
-			}
+//			List<String[]> loan = readCSV("dataset/loan.csv");
+//			String columnLoanNames = "msisdn, loan_type, amount, created_date, modified_date";
+//			stmt.executeUpdate("TRUNCATE TABLE loan");
+//			for(String[] record: loan) {
+//				String sql = getInsertStatement("loan", columnLoanNames, getLoanValue(record));
+//				stmt.executeUpdate(sql);
+//			}
+//			
+//			List<String[]> recharge = readCSV("dataset/recharge_update.csv");
+//			String columnRechargeNames = "msisdn, created_date, c_or_v, fee_charge";
+//			stmt.executeUpdate("TRUNCATE TABLE recharge");
+//			for(String[] record: recharge) {
+//				String sql = getInsertStatement("recharge", columnRechargeNames, getRechargeValue(record));
+//				stmt.executeUpdate(sql);
+//			}
+//			
+//			String columnTempNames = "msisdn, service_id, second_per_call, used_data, partner_msisdn, created_date, upload_data, service_type";
+//			
+//			BufferedReader br = null;
+//			String line = "";
+//			String csvSplitBy = ",";
+//			stmt.executeUpdate("TRUNCATE TABLE service_use");
+//			try {
+//				br = new BufferedReader(new FileReader("dataset/temp.csv"));
+//				line = br.readLine().trim();
+//				line = br.readLine();
+//				while (line != null && !line.isEmpty()) {
+//					String[] record = line.split(csvSplitBy); 
+//					String sql = getInsertStatement("service_use", columnTempNames, getTempValue(record));
+//					stmt.executeUpdate(sql);
+//					line = br.readLine();
+//				}
+//				br.close();
+//			} catch (Exception e) {
+//				System.out.println(e.toString());
+//			}
 		} catch (Exception e) {
 			System.out.println(e.toString());
 		} finally {
