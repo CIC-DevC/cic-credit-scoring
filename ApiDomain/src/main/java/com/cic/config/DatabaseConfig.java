@@ -16,7 +16,7 @@ import com.zaxxer.hikari.HikariDataSource;
 @Configuration
 public class DatabaseConfig {
 
-    @Value("mysql://b26d32279270bb:2a1fd86b@us-cdbr-east-02.cleardb.com/heroku_6608b6218f88c46?reconnect=true")
+    @Value("${spring.datasource.url}")
     private String dbUrl;
 
     @Bean
