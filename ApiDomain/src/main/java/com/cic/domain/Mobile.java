@@ -1,8 +1,6 @@
 package com.cic.domain;
 
 import java.io.Serializable;
-import java.time.Instant;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;

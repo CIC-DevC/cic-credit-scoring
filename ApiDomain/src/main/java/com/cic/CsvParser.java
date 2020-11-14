@@ -17,17 +17,20 @@ import com.cic.util.ConvertDataType;
 public class CsvParser {
 
 	public final static String SQL_INSERT_STATEMENT = "INSERT INTO {0} ({1}) VALUES ({2})";
-	private static String url = "jdbc:mysql://localhost:3306/cic_devc";
-	private static String user = "root";
-	private static String password = "123456";
+//	private static String url = "jdbc:mysql://localhost:3306/cic_devc";
+	private static String url = "jdbc:mysql://us-cdbr-east-02.cleardb.com:3306/heroku_233976d4d8e30cc";
+	private static String user = "ba97f4e0d34093";
+	private static String password = "5ea3830c";
 	private static String driver = "com.mysql.cj.jdbc.Driver";
 
-	public static void main(String[] args) throws SQLException {
+	//spring.datasource.url= mysql://ba97f4e0d34093:5ea3830c@us-cdbr-east-02.cleardb.com/heroku_233976d4d8e30cc?reconnect=true
+
+	public static void main(String[]args) throws SQLException {
 		Connection conn = connect(driver);
 		Statement stmt = null;
 		ResultSet rs = null;
 		try {
-//			stmt = conn.createStatement();
+			stmt = conn.createStatement();
 //			List<String[]> submission = readCSV("dataset/submission.csv");
 //			String columnSubmision = "msisdn, score";
 //			stmt.executeUpdate("TRUNCATE TABLE submission");
@@ -38,21 +41,21 @@ public class CsvParser {
 			
 //			List<String[]> arpu = readCSV("dataset/arpu_train.csv");
 //			String columnArpuNames = "msisdn, city_id, area_id, birthyear, sex, COL_17, COL_18, COL_19, COL_20, COL_21, COL_22, COL_27a, COL_27b, COL_27c, COL_27d, label, phone_num";
-//			stmt.executeUpdate("TRUNCATE TABLE arpu");
-//			Long phoneNum = Long.parseLong("8490000000");
+////			stmt.executeUpdate("TRUNCATE TABLE arpu");
+//			Long phoneNum = Long.parseLong("84971000000");
 //			for(String[] record: arpu) {
 //				String phoneNumm = ",\"" + phoneNum + "\"";
 //				String sql = getInsertStatement("arpu", columnArpuNames, getArpuValue(record, 1, phoneNumm));
 //				
-//				stmt.executeUpdate(sql);
+////				stmt.executeUpdate(sql);
 //				phoneNum++;
 //			}
 //			arpu = readCSV("dataset/arpu_test.csv");
-//			phoneNum = Long.parseLong("8491000000");
+//			phoneNum = Long.parseLong("84931000000");
 //			for(String[] record: arpu) {
 //				String phoneNumm = ",\"" + phoneNum + "\"";
 //				String sql = getInsertStatement("arpu", columnArpuNames, getArpuValue(record, 0, phoneNumm));
-//				stmt.executeUpdate(sql);
+////				stmt.executeUpdate(sql);
 //				phoneNum++;
 //			}
 			
@@ -72,26 +75,26 @@ public class CsvParser {
 //				stmt.executeUpdate(sql);
 //			}
 //			
-//			String columnTempNames = "msisdn, service_id, second_per_call, used_data, partner_msisdn, created_date, upload_data, service_type";
-//			
-//			BufferedReader br = null;
-//			String line = "";
-//			String csvSplitBy = ",";
-//			stmt.executeUpdate("TRUNCATE TABLE service_use");
-//			try {
-//				br = new BufferedReader(new FileReader("dataset/temp.csv"));
-//				line = br.readLine().trim();
-//				line = br.readLine();
-//				while (line != null && !line.isEmpty()) {
-//					String[] record = line.split(csvSplitBy); 
-//					String sql = getInsertStatement("service_use", columnTempNames, getTempValue(record));
-//					stmt.executeUpdate(sql);
-//					line = br.readLine();
-//				}
-//				br.close();
-//			} catch (Exception e) {
-//				System.out.println(e.toString());
-//			}
+			String columnTempNames = "msisdn, service_id, second_per_call, used_data, partner_msisdn, created_date, upload_data, service_type";
+			
+			BufferedReader br = null;
+			String line = "";
+			String csvSplitBy = ",";
+			stmt.executeUpdate("TRUNCATE TABLE service_use");
+			try {
+				br = new BufferedReader(new FileReader("dataset/temp.csv"));
+				line = br.readLine().trim();
+				line = br.readLine();
+				while (line != null && !line.isEmpty()) {
+					String[] record = line.split(csvSplitBy); 
+					String sql = getInsertStatement("service_use", columnTempNames, getTempValue(record));
+					stmt.executeUpdate(sql);
+					line = br.readLine();
+				}
+				br.close();
+			} catch (Exception e) {
+				System.out.println(e.toString());
+			}
 		} catch (Exception e) {
 			System.out.println(e.toString());
 		} finally {
