@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.cic.domain.Loan;
 import com.cic.service.LoanService;
 
-@CrossOrigin(origins = "http://polar-hamlet-55744.herokuapp.com")
+@CrossOrigin(origins = {"http://localhost:8181", "http://localhost:6868"}, allowCredentials = "true")
 @RestController
 @RequestMapping("/api")
 public class LoanController {

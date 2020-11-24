@@ -28,5 +28,4 @@ public class ServiceUseServiceImpl implements ServiceUseService{
 	public List<ServiceUse> findByPhoneNum(String phoneNum) {
 		return serviceUseRepository.findByPhoneNum(phoneNum);
 	}
-
 }

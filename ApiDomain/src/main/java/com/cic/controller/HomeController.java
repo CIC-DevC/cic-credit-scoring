@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.cic.dto.MsisdnDTO;
 import com.cic.service.HomeService;
 
-@CrossOrigin(origins = "http://polar-hamlet-55744.herokuapp.com")
+@CrossOrigin(origins = {"http://localhost:8181", "http://localhost:6868"}, allowCredentials = "true")
 @RestController
 @RequestMapping
 public class HomeController {

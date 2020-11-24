@@ -22,5 +22,4 @@ public interface ServiceUseRepository extends  JpaRepository<ServiceUse, Long>{
 			+ " WHERE b.phoneNum = :phoneNum AND a.serviceId IS NOT NULL")
 	List<ServiceUse> findByPhoneNum(@Param("phoneNum") String phoneNum);
 	
-	
 }

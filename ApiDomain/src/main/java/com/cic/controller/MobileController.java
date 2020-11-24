@@ -12,7 +12,7 @@ import com.cic.domain.Mobile;
 import com.cic.dto.MobileDTO;
 import com.cic.service.MobileService;
 
-@CrossOrigin(origins = "http://polar-hamlet-55744.herokuapp.com")
+@CrossOrigin(origins = {"http://localhost:8181", "http://localhost:6868"}, allowCredentials = "true")
 @RestController
 @RequestMapping
 public class MobileController {

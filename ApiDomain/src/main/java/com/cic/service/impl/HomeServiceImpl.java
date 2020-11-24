@@ -10,43 +10,48 @@ import com.cic.domain.Loan;
 import com.cic.domain.Recharge;
 import com.cic.domain.ServiceUse;
 import com.cic.dto.MsisdnDTO;
-import com.cic.repository.ArpuRepository;
-import com.cic.repository.LoanRepository;
-import com.cic.repository.RechargeRepository;
-import com.cic.repository.ServiceUseRepository;
+import com.cic.repository.HomeRepository;
 import com.cic.service.HomeService;
 
 @Service
 public class HomeServiceImpl implements HomeService {
 
 	@Autowired
-	LoanRepository loanRepository;
-	@Autowired
-	ArpuRepository arpuRepository;
-	@Autowired
-	RechargeRepository rechargeRepository;
-	@Autowired
-	ServiceUseRepository serviceUseRepository;
+	HomeRepository homeRepository;
 
 	@Override
 	public MsisdnDTO findInfoOfMsisdnByPhoneNum(String phoneNum) {
-		Arpu arpu = arpuRepository.findByPhoneNum(phoneNum);
+		Arpu arpu = homeRepository.findArpuByPhoneNum(phoneNum);
 		MsisdnDTO msisdn = parseArpuToMsisdn(arpu);
+		msisdn.setScore(homeRepository.findScoreByPhoneNum(phoneNum));
 		
-		List<Loan> lstLoan = loanRepository.findByPhoneNum(phoneNum);
+		List<Loan> lstLoan = homeRepository.findLoanByPhoneNum(phoneNum);
 		if(lstLoan != null && lstLoan.size() > 0) {
 			msisdn.setLstLoan(lstLoan);
 		}
 		
-		List<Recharge> lstRecharge = rechargeRepository.findByPhoneNum(phoneNum);
+		List<Recharge> lstRecharge = homeRepository.findRechargeByPhoneNum(phoneNum);
 		if(lstRecharge != null && lstRecharge.size() > 0) {
 			msisdn.setLstRecharge(lstRecharge);
 		}
 		
-		List<ServiceUse> lstServiceUse = serviceUseRepository.findByPhoneNum(phoneNum);
+		List<ServiceUse> lstServiceUse = homeRepository.findServiceByPhoneNum(phoneNum);
 		if(lstServiceUse != null && lstServiceUse.size() > 0) {
 			msisdn.setLstServiceUse(lstServiceUse);
 		}
+		
+		msisdn.setSumLoan(homeRepository.findSumLoan(phoneNum));
+		msisdn.setMaxLoan(homeRepository.findMaxLoan(phoneNum));
+		msisdn.setMinLoan(homeRepository.findMinLoan(phoneNum));
+		msisdn.setNumLoan(homeRepository.findMaxLoan(phoneNum));
+		msisdn.setNumLoanLate(homeRepository.findNumLoanLate(phoneNum));
+		
+		msisdn.setSumRecharge(homeRepository.findSumRecharge(phoneNum));
+		msisdn.setMaxRecharge(homeRepository.findMaxRecharge(phoneNum));
+		msisdn.setMinRecharge(homeRepository.findMinRecharge(phoneNum));
+		msisdn.setNumRecharge(homeRepository.findMaxRecharge(phoneNum));
+		msisdn.setNumVRecharge(homeRepository.findNumVRecharge(phoneNum));
+		msisdn.setNumCRecharge(homeRepository.findNumCRecharge(phoneNum));
 
 		return msisdn;
 	}

@@ -50,6 +50,33 @@ public class MsisdnDTO implements Serializable{
 	private List<Recharge> lstRecharge;
 	
 	private List<ServiceUse> lstServiceUse;
+	
+	private Double score;
+	
+	private List<Double> scoreHistoryLst;
+	
+	private Long sumLoan;
+	private Long debit;
+	private Long maxLoan;
+	private Long minLoan;
+	private Long numLoan;
+	private Long numLoanLate;
+
+	private Long sumRecharge;
+	private Long maxRecharge;
+	private Long minRecharge;
+	private Long numRecharge;
+	private Long numVRecharge;
+	private Long numCRecharge;
+
+	
+	public Double getScore() {
+		return score;
+	}
+
+	public void setScore(Double score) {
+		this.score = score;
+	}
 
 	public String getMsisdn() {
 		return msisdn;
@@ -213,5 +240,109 @@ public class MsisdnDTO implements Serializable{
 
 	public void setLabel(Integer label) {
 		this.label = label;
+	}
+
+	public List<Double> getScoreHistoryLst() {
+		return scoreHistoryLst;
+	}
+
+	public void setScoreHistoryLst(List<Double> scoreHistoryLst) {
+		this.scoreHistoryLst = scoreHistoryLst;
+	}
+
+	public Long getSumLoan() {
+		return sumLoan;
+	}
+
+	public void setSumLoan(Long sumLoan) {
+		this.sumLoan = sumLoan;
+	}
+
+	public Long getDebit() {
+		return debit;
+	}
+
+	public void setDebit(Long debit) {
+		this.debit = debit;
+	}
+
+	public Long getMaxLoan() {
+		return maxLoan;
+	}
+
+	public void setMaxLoan(Long maxLoan) {
+		this.maxLoan = maxLoan;
+	}
+
+	public Long getMinLoan() {
+		return minLoan;
+	}
+
+	public void setMinLoan(Long minLoan) {
+		this.minLoan = minLoan;
+	}
+
+	public Long getNumLoan() {
+		return numLoan;
+	}
+
+	public void setNumLoan(Long numLoan) {
+		this.numLoan = numLoan;
+	}
+
+	public Long getNumLoanLate() {
+		return numLoanLate;
+	}
+
+	public void setNumLoanLate(Long long1) {
+		this.numLoanLate = long1;
+	}
+
+	public Long getSumRecharge() {
+		return sumRecharge;
+	}
+
+	public void setSumRecharge(Long sumRecharge) {
+		this.sumRecharge = sumRecharge;
+	}
+
+	public Long getMaxRecharge() {
+		return maxRecharge;
+	}
+
+	public void setMaxRecharge(Long maxRecharge) {
+		this.maxRecharge = maxRecharge;
+	}
+
+	public Long getMinRecharge() {
+		return minRecharge;
+	}
+
+	public void setMinRecharge(Long minRecharge) {
+		this.minRecharge = minRecharge;
+	}
+
+	public Long getNumRecharge() {
+		return numRecharge;
+	}
+
+	public void setNumRecharge(Long numRecharge) {
+		this.numRecharge = numRecharge;
+	}
+
+	public Long getNumVRecharge() {
+		return numVRecharge;
+	}
+
+	public void setNumVRecharge(Long numVRecharge) {
+		this.numVRecharge = numVRecharge;
+	}
+
+	public Long getNumCRecharge() {
+		return numCRecharge;
+	}
+
+	public void setNumCRecharge(Long numCRecharge) {
+		this.numCRecharge = numCRecharge;
 	}
 }
