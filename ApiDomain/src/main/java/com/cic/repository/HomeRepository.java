@@ -24,7 +24,8 @@ public interface HomeRepository extends  JpaRepository<Arpu, Long>{
 	
 	@Query("SELECT a.score FROM Submission a" 
 			+ " INNER JOIN Arpu b ON a.msisdn = b.msisdn "
-			+ " WHERE b.phoneNum = :phoneNum")
+			+ " WHERE b.phoneNum = :phoneNum AND a.id = "
+			+ "	(SELECT MAX(c.id) FROM Submission c INNER JOIN Arpu d ON c.msisdn = d.msisdn WHERE d.phoneNum = :phoneNum) ")
 	Double findScoreByPhoneNum(@Param("phoneNum") String phoneNum);
 	
 	@Query("SELECT a FROM Loan a "
@@ -42,8 +43,8 @@ public interface HomeRepository extends  JpaRepository<Arpu, Long>{
 			+ " WHERE b.phoneNum = :phoneNum AND a.feeCharge IS NOT NULL")
 	List<Recharge> findRechargeByPhoneNum(@Param("phoneNum") String phoneNum);
 	
-	@Query("SELECT a FROM Submission a"
-			+ " LEFT JOIN Arpu b ON a.msisdn = b.msisdn "
+	@Query("SELECT a FROM Submission a" 
+			+ " INNER JOIN Arpu b ON a.msisdn = b.msisdn "
 			+ " WHERE b.phoneNum = :phoneNum")
 	List<Submission> findScoreHistoryByPhoneNum(@Param("phoneNum") String phoneNum);
 
@@ -124,4 +125,57 @@ public interface HomeRepository extends  JpaRepository<Arpu, Long>{
 			+ " WHERE b.phoneNum = :phoneNum AND a.cOrV = 'C'"
 			+ " GROUP BY b.msisdn")	
 	Long findNumCRecharge(@Param("phoneNum")String phoneNum);
+	
+	@Query("SELECT a FROM Arpu a "
+			+ " WHERE a.phoneNum LIKE %:keyword% "
+			+ " OR a.cityId LIKE %:keyword% "
+			+ " OR a.birthyear LIKE %:keyword% "
+			+ " OR a.sex LIKE %:keyword% "
+			+ " OR a.COL18 LIKE %:keyword% "
+			+ " OR a.COL17 LIKE %:keyword%")
+	List<Arpu> findArpuByKeyword (@Param("keyword")String keyword);
+	
+	// numCall;
+	@Query("SELECT COUNT(a.msisdn) FROM ServiceUse a "
+			+ " LEFT JOIN Arpu b ON a.msisdn = b.msisdn "
+			+ " WHERE b.phoneNum = :phoneNum AND (a.serviceType = 1 OR a.serviceType = 2 OR a.serviceType = 3)"
+			+ " GROUP BY b.msisdn")	
+	Long findNumCall(@Param("phoneNum")String phoneNum);
+	
+	// totalCallTime;
+	@Query("SELECT SUM(a.secondPerCall) FROM ServiceUse a "
+			+ " LEFT JOIN Arpu b ON a.msisdn = b.msisdn "
+			+ " WHERE b.phoneNum = :phoneNum AND (a.serviceType = 1 OR a.serviceType = 2 OR a.serviceType = 3)"
+			+ " GROUP BY b.msisdn")	
+	Long findTotalCallTime(@Param("phoneNum")String phoneNum);
+	
+	
+	// totalParnerCall;
+	@Query("SELECT COUNT(a.partnerMsisdn) FROM ServiceUse a "
+			+ " LEFT JOIN Arpu b ON a.msisdn = b.msisdn "
+			+ " WHERE b.phoneNum = :phoneNum AND (a.serviceType = 1 OR a.serviceType = 2 OR a.serviceType = 3)"
+			+ " GROUP BY b.msisdn, a.partnerMsisdn")	
+	Long findTotalParnerCall(@Param("phoneNum")String phoneNum);
+	
+	// numUsedInternet;
+	@Query("SELECT COUNT(a.msisdn) FROM ServiceUse a "
+			+ " LEFT JOIN Arpu b ON a.msisdn = b.msisdn "
+			+ " WHERE b.phoneNum = :phoneNum AND a.serviceType = 7 AND a.usedData > 0"
+			+ " GROUP BY b.msisdn")	
+	Long findNumUsedInternet(@Param("phoneNum")String phoneNum);
+	
+	// numUploadedInternet;
+	@Query("SELECT COUNT(a.msisdn) FROM ServiceUse a "
+			+ " LEFT JOIN Arpu b ON a.msisdn = b.msisdn "
+			+ " WHERE b.phoneNum = :phoneNum AND a.serviceType = 7 AND a.uploadData > 0"
+			+ " GROUP BY b.msisdn")	
+	Long findNumUploadedInternet(@Param("phoneNum")String phoneNum);
+//	
+//	// totalParnerInternet;
+//	Long findTotalParnerInternet(@Param("phoneNum")String phoneNum);
+//	
+//	// avgScoreOfPartner;
+//	Double findAvgScoreOfPartner(@Param("phoneNum")String phoneNum);
+	@Query("SELECT a.phoneNum FROM Arpu a WHERE msisdn = :msisdn")
+	String findPhoneNumByMsisdn(@Param("msisdn")String msisdn);
 }

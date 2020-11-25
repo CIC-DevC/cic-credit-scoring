@@ -1,9 +1,13 @@
 package com.cic.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.cic.domain.Mobile;
+import com.cic.domain.Submission;
+import com.cic.dto.MobileHistoryDTO;
 import com.cic.repository.MobileRepository;
 import com.cic.service.MobileService;
 
@@ -23,6 +27,14 @@ public class MobileServiceImpl implements MobileService{
 		return score;
 	}
 
+	@Override
+	public MobileHistoryDTO checkHistory(String phoneNum) {
+		MobileHistoryDTO scoreHistory = new MobileHistoryDTO();
+		List<Submission> lstSubmission = mobileRepository.checkHistory(phoneNum);
+		scoreHistory.setPhoneNum(phoneNum);
+		scoreHistory.setScore(lstSubmission);
+		return scoreHistory;
+	}
 	
 
 }

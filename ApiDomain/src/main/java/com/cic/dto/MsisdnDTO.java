@@ -6,6 +6,7 @@ import java.util.List;
 import com.cic.domain.Loan;
 import com.cic.domain.Recharge;
 import com.cic.domain.ServiceUse;
+import com.cic.domain.Submission;
 
 public class MsisdnDTO implements Serializable{
 	
@@ -53,7 +54,10 @@ public class MsisdnDTO implements Serializable{
 	
 	private Double score;
 	
-	private List<Double> scoreHistoryLst;
+	private List<Submission> scoreHistoryLst;
+	
+	private List<CallDTO> lstCall;
+	private List<InternetDTO> lstInternet;
 	
 	private Long sumLoan;
 	private Long debit;
@@ -69,6 +73,15 @@ public class MsisdnDTO implements Serializable{
 	private Long numVRecharge;
 	private Long numCRecharge;
 
+	private Long numCall;
+	private Long totalCallTime;
+	private Long avgCallTime;
+	private Long totalParnerCall;
+	
+	private Long numUsedInternet;
+	private Long numUploadedInternet;
+	private Long totalParnerInternet;
+	private Double avgScoreOfPartner;
 	
 	public Double getScore() {
 		return score;
@@ -242,11 +255,11 @@ public class MsisdnDTO implements Serializable{
 		this.label = label;
 	}
 
-	public List<Double> getScoreHistoryLst() {
+	public List<Submission> getScoreHistoryLst() {
 		return scoreHistoryLst;
 	}
 
-	public void setScoreHistoryLst(List<Double> scoreHistoryLst) {
+	public void setScoreHistoryLst(List<Submission> scoreHistoryLst) {
 		this.scoreHistoryLst = scoreHistoryLst;
 	}
 
@@ -344,5 +357,85 @@ public class MsisdnDTO implements Serializable{
 
 	public void setNumCRecharge(Long numCRecharge) {
 		this.numCRecharge = numCRecharge;
+	}
+
+	public List<CallDTO> getLstCall() {
+		return lstCall;
+	}
+
+	public void setLstCall(List<CallDTO> lstCall) {
+		this.lstCall = lstCall;
+	}
+
+	public List<InternetDTO> getLstInternet() {
+		return lstInternet;
+	}
+
+	public void setLstInternet(List<InternetDTO> lstInternet) {
+		this.lstInternet = lstInternet;
+	}
+
+	public Long getNumCall() {
+		return numCall;
+	}
+
+	public void setNumCall(Long numCall) {
+		this.numCall = numCall;
+	}
+
+	public Long getTotalCallTime() {
+		return totalCallTime;
+	}
+
+	public void setTotalCallTime(Long totalCallTime) {
+		this.totalCallTime = totalCallTime;
+	}
+
+	public Long getAvgCallTime() {
+		return avgCallTime;
+	}
+
+	public void setAvgCallTime(Long avgCallTime) {
+		this.avgCallTime = avgCallTime;
+	}
+
+	public Long getTotalParnerCall() {
+		return totalParnerCall;
+	}
+
+	public void setTotalParnerCall(Long totalParnerCall) {
+		this.totalParnerCall = totalParnerCall;
+	}
+
+	public Long getNumUsedInternet() {
+		return numUsedInternet;
+	}
+
+	public void setNumUsedInternet(Long numUsedInternet) {
+		this.numUsedInternet = numUsedInternet;
+	}
+
+	public Long getNumUploadedInternet() {
+		return numUploadedInternet;
+	}
+
+	public void setNumUploadedInternet(Long numUploadedInternet) {
+		this.numUploadedInternet = numUploadedInternet;
+	}
+
+	public Long getTotalParnerInternet() {
+		return totalParnerInternet;
+	}
+
+	public void setTotalParnerInternet(Long totalParnerInternet) {
+		this.totalParnerInternet = totalParnerInternet;
+	}
+
+	public Double getAvgScoreOfPartner() {
+		return avgScoreOfPartner;
+	}
+
+	public void setAvgScoreOfPartner(Double avgScoreOfPartner) {
+		this.avgScoreOfPartner = avgScoreOfPartner;
 	}
 }

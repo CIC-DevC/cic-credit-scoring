@@ -1,5 +1,7 @@
 package com.cic.controller;
 
+import java.util.List;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -27,5 +29,11 @@ public class HomeController {
 	public ResponseEntity<MsisdnDTO> getAllArpu(@PathVariable("phoneNum") String phoneNum) {
 		MsisdnDTO msisdnDTO = homeService.findInfoOfMsisdnByPhoneNum(phoneNum);
         return new ResponseEntity<MsisdnDTO>(msisdnDTO, HttpStatus.OK);
+    }
+	
+	@GetMapping(value= {"api/filter/{keyword}"})
+	public ResponseEntity<List<MsisdnDTO>> getFilteringArpu(@PathVariable("keyword") String keyword) {
+		List<MsisdnDTO> msisdnDTO = homeService.findArpuByKeyword(keyword);
+        return new ResponseEntity<List<MsisdnDTO>>(msisdnDTO, HttpStatus.OK);
     }
 }

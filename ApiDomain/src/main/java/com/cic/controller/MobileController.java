@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.cic.domain.Mobile;
 import com.cic.dto.MobileDTO;
+import com.cic.dto.MobileHistoryDTO;
 import com.cic.service.MobileService;
 
 @CrossOrigin(origins = {"http://localhost:8181", "http://localhost:6868"}, allowCredentials = "true")
@@ -31,5 +32,11 @@ public class MobileController {
 		dto.setPhoneNum(phoneNum);
 		dto.setScore(mobileCheck.getScore());
         return new ResponseEntity<MobileDTO>(dto, HttpStatus.OK);
+    }
+	
+	@GetMapping(value= {"/check-history/{phoneNum}"})
+	public ResponseEntity<MobileHistoryDTO> checkHistory(@PathVariable("phoneNum") String phoneNum) {
+		MobileHistoryDTO mobileCheck = mobileService.checkHistory(phoneNum);
+        return new ResponseEntity<MobileHistoryDTO>(mobileCheck, HttpStatus.OK);
     }
 }

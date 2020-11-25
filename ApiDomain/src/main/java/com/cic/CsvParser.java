@@ -17,8 +17,8 @@ import com.cic.util.ConvertDataType;
 public class CsvParser {
 
 	public final static String SQL_INSERT_STATEMENT = "INSERT INTO {0} ({1}) VALUES ({2})";
-	private static String url = "jdbc:mysql://localhost:3306/cic_devc";
-//	private static String url = "jdbc:mysql://us-cdbr-east-02.cleardb.com:3306/heroku_233976d4d8e30cc";
+//	private static String url = "jdbc:mysql://localhost:3306/cic_devc";
+	private static String url = "jdbc:mysql://us-cdbr-east-02.cleardb.com:3306/heroku_233976d4d8e30cc";
 	private static String user = "root";
 	private static String password = "123456";
 	private static String driver = "com.mysql.cj.jdbc.Driver";
@@ -34,7 +34,7 @@ public class CsvParser {
 			
 			List<String[]> submission = readCSV("dataset/submission (1).csv");
 			String columnSubmision = "msisdn, score";
-//			stmt.executeUpdate("TRUNCATE TABLE submission");
+			stmt.executeUpdate("TRUNCATE TABLE submission");
 			for(String[] record: submission) {
 				String sql = getInsertStatement("submission", columnSubmision, getSubmissionValue(record));
 				stmt.executeUpdate(sql);

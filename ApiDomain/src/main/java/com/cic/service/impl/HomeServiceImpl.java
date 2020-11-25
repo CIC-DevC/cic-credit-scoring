@@ -1,5 +1,6 @@
 package com.cic.service.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,8 @@ import com.cic.domain.Arpu;
 import com.cic.domain.Loan;
 import com.cic.domain.Recharge;
 import com.cic.domain.ServiceUse;
+import com.cic.dto.CallDTO;
+import com.cic.dto.InternetDTO;
 import com.cic.dto.MsisdnDTO;
 import com.cic.repository.HomeRepository;
 import com.cic.service.HomeService;
@@ -40,6 +43,34 @@ public class HomeServiceImpl implements HomeService {
 			msisdn.setLstServiceUse(lstServiceUse);
 		}
 		
+		List<CallDTO> lstCall = new ArrayList<>();
+		List<InternetDTO> lstInternet = new ArrayList<>();
+		
+		for (ServiceUse serviceUse : lstServiceUse) {
+			if( serviceUse.getServiceType() != 7) {
+				CallDTO call = new CallDTO();
+				call.setMsisdn(serviceUse.getMsisdn());
+				call.setPartnerMsisdn(serviceUse.getPartnerMsisdn());
+				call.setSecondPerCall(serviceUse.getSecondPerCall());
+				call.setServiceId(serviceUse.getServiceId());
+				call.setServiceType(serviceUse.getServiceType());
+				call.setCreatedDate(serviceUse.getCreatedDate());
+				call.setPhoneNum(phoneNum);
+				call.setPartnerPhoneNum(homeRepository.findPhoneNumByMsisdn(serviceUse.getPartnerMsisdn()));
+				lstCall.add(call);
+			} else {
+				InternetDTO internet = new InternetDTO();
+				internet.setMsisdn(serviceUse.getMsisdn());
+				internet.setServiceId(serviceUse.getServiceId());
+				internet.setCreatedDate(serviceUse.getCreatedDate());
+				internet.setUsedData(serviceUse.getUsedData());
+				internet.setUploadData(serviceUse.getUploadData());
+				lstInternet.add(internet);
+			}
+		}
+		msisdn.setLstCall(lstCall);
+		msisdn.setLstInternet(lstInternet);
+		msisdn.setScoreHistoryLst(homeRepository.findScoreHistoryByPhoneNum(phoneNum));
 		msisdn.setSumLoan(homeRepository.findSumLoan(phoneNum));
 		msisdn.setMaxLoan(homeRepository.findMaxLoan(phoneNum));
 		msisdn.setMinLoan(homeRepository.findMinLoan(phoneNum));
@@ -53,9 +84,29 @@ public class HomeServiceImpl implements HomeService {
 		msisdn.setNumVRecharge(homeRepository.findNumVRecharge(phoneNum));
 		msisdn.setNumCRecharge(homeRepository.findNumCRecharge(phoneNum));
 
+		Long numCall = homeRepository.findNumCall(phoneNum);
+		Long totalCallTime = homeRepository.findTotalCallTime(phoneNum);
+		msisdn.setNumCall(numCall);
+		msisdn.setTotalCallTime(totalCallTime);
+		msisdn.setAvgCallTime(numCall/totalCallTime);
+//		msisdn.setTotalParnerCall(homeRepository.findTotalParnerCall(phoneNum));
+		msisdn.setNumUsedInternet(homeRepository.findNumUsedInternet(phoneNum));
+		msisdn.setNumUploadedInternet(homeRepository.findNumUploadedInternet(phoneNum));
 		return msisdn;
 	}
 
+	@Override
+	public List<MsisdnDTO> findArpuByKeyword(String keyword) {
+		List<Arpu> arpus = homeRepository.findArpuByKeyword(keyword);
+		List<MsisdnDTO> lstMsisdn = new ArrayList<>();
+		for(Arpu arpu : arpus) {
+			MsisdnDTO msisdn = parseArpuToMsisdn(arpu);
+			msisdn.setScore(homeRepository.findScoreByPhoneNum(msisdn.getPhoneNum()));
+			lstMsisdn.add(msisdn);
+		}
+		return lstMsisdn;
+	}
+	
 	/**
 	 * 
 	 * @author ntmduyen
@@ -135,5 +186,7 @@ public class HomeServiceImpl implements HomeService {
 
 		return msisdn;
 	}
+
+	
 
 }
