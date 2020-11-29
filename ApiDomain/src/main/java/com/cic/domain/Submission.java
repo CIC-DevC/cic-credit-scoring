@@ -18,7 +18,7 @@ public class Submission {
 	
 	private String msisdn;
 	private Double score;
-	private Instant createdDate;
+	private String createdDate;
 	public String getMsisdn() {
 		return msisdn;
 	}
@@ -31,10 +31,10 @@ public class Submission {
 	public void setScore(Double score) {
 		this.score = score;
 	}
-	public Instant getCreatedDate() {
+	public String getCreatedDate() {
 		return createdDate;
 	}
-	public void setCreatedDate(Instant createdDate) {
+	public void setCreatedDate(String createdDate) {
 		this.createdDate = createdDate;
 	}
 }

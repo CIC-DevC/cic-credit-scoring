@@ -10,7 +10,7 @@ public class InternetDTO {
 	
 	private Long usedData;
 	
-	private Instant createdDate;
+	private String createdDate;
 	
 	private Long uploadData;
 
@@ -38,11 +38,11 @@ public class InternetDTO {
 		this.usedData = usedData;
 	}
 
-	public Instant getCreatedDate() {
+	public String getCreatedDate() {
 		return createdDate;
 	}
 
-	public void setCreatedDate(Instant createdDate) {
+	public void setCreatedDate(String createdDate) {
 		this.createdDate = createdDate;
 	}
 

@@ -36,7 +36,7 @@ public class ServiceUse implements Serializable {
 	private String partnerMsisdn;
 	
 	@Column(name = "created_date")
-	private Instant createdDate;
+	private String createdDate;
 	
 	@Column(name = "upload_data")
 	private Long uploadData;
@@ -92,11 +92,11 @@ public class ServiceUse implements Serializable {
 		this.partnerMsisdn = partnerMsisdn;
 	}
 
-	public Instant getCreatedDate() {
+	public String getCreatedDate() {
 		return createdDate;
 	}
 
-	public void setCreatedDate(Instant createdDate) {
+	public void setCreatedDate(String createdDate) {
 		this.createdDate = createdDate;
 	}
 

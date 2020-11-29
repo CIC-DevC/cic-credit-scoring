@@ -30,10 +30,10 @@ public class Loan implements Serializable {
 	private Double amount;
 	
 	@Column(name = "created_date")
-	private Instant createdDate;
+	private String createdDate;
 	
 	@Column(name = "modified_date")
-	private Instant modifiedDate;
+	private String modifiedDate;
 
 	public Long getId() {
 		return id;
@@ -67,19 +67,19 @@ public class Loan implements Serializable {
 		this.amount = amount;
 	}
 
-	public Instant getCreatedDate() {
+	public String getCreatedDate() {
 		return createdDate;
 	}
 
-	public void setCreatedDate(Instant createdDate) {
+	public void setCreatedDate(String createdDate) {
 		this.createdDate = createdDate;
 	}
 
-	public Instant getModifiedDate() {
+	public String getModifiedDate() {
 		return modifiedDate;
 	}
 
-	public void setModifiedDate(Instant modifiedDate) {
+	public void setModifiedDate(String modifiedDate) {
 		this.modifiedDate = modifiedDate;
 	}
 

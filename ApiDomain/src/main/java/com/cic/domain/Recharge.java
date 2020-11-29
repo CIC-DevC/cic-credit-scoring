@@ -24,7 +24,7 @@ public class Recharge implements Serializable {
 	private String msisdn;
 	
 	@Column(name = "created_date")
-	private Instant createdDate;
+	private String createdDate;
 	
 	@Column(name = "c_or_v")
 	private String cOrV;
@@ -48,11 +48,11 @@ public class Recharge implements Serializable {
 		this.msisdn = msisdn;
 	}
 
-	public Instant getCreatedDate() {
+	public String getCreatedDate() {
 		return createdDate;
 	}
 
-	public void setCreatedDate(Instant createdDate) {
+	public void setCreatedDate(String createdDate) {
 		this.createdDate = createdDate;
 	}
 

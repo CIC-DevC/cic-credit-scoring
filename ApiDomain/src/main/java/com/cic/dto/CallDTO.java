@@ -16,7 +16,7 @@ public class CallDTO {
 	
 	
 	
-	private Instant createdDate;
+	private String createdDate;
 	
 	private Integer serviceType;
 
@@ -52,11 +52,11 @@ public class CallDTO {
 		this.partnerMsisdn = partnerMsisdn;
 	}
 
-	public Instant getCreatedDate() {
+	public String getCreatedDate() {
 		return createdDate;
 	}
 
-	public void setCreatedDate(Instant createdDate) {
+	public void setCreatedDate(String createdDate) {
 		this.createdDate = createdDate;
 	}
 
